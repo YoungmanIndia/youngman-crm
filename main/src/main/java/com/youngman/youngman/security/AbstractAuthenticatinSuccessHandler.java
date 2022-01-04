@@ -1,6 +1,6 @@
 package com.youngman.youngman.security;
 
-import com.youngman.core.model.user.User;
+import com.youngman.core.model.crm.Users;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,7 +38,7 @@ public abstract class AbstractAuthenticatinSuccessHandler extends SavedRequestAw
 		  
 		  try {
 //			  User user = userService.getByUserName(userName);
-			  User user = new User();
+			  Users user = new Users();
 			  
 			  Date lastAccess = user.getLoginTime();
 			  if(lastAccess==null) {
