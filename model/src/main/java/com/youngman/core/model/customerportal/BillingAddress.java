@@ -3,7 +3,7 @@ package com.youngman.core.model.customerportal;
 import com.youngman.core.model.common.audit.AuditListener;
 import com.youngman.core.model.common.audit.AuditSection;
 import com.youngman.core.model.common.audit.Auditable;
-import com.youngman.core.model.generic.SalesManagerEntity;
+import com.youngman.core.model.generic.YoungmanEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 @Getter @Setter @NoArgsConstructor
 @EntityListeners(value = AuditListener.class)
 @Table(name = "BILLING_ADDRESS")
-public class BillingAddress extends SalesManagerEntity<Long, BillingAddress> implements Auditable {
+public class BillingAddress extends YoungmanEntity<Long, BillingAddress> implements Auditable {
     private static final long serialVersionUID = 1L;
 
     @Id

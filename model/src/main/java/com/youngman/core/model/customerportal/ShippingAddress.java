@@ -4,7 +4,7 @@ import com.youngman.core.enums.Status;
 import com.youngman.core.model.common.audit.AuditListener;
 import com.youngman.core.model.common.audit.AuditSection;
 import com.youngman.core.model.common.audit.Auditable;
-import com.youngman.core.model.generic.SalesManagerEntity;
+import com.youngman.core.model.generic.YoungmanEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @Getter @Setter @NoArgsConstructor
 @EntityListeners(value = AuditListener.class)
 @Table(name = "SHIPPING_ADDRESS")
-public class ShippingAddress extends SalesManagerEntity<Long, ShippingAddress> implements Auditable {
+public class ShippingAddress extends YoungmanEntity<Long, ShippingAddress> implements Auditable {
     private static final long serialVersionUID = 1L;
 
     @Id
