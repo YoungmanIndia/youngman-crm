@@ -6,7 +6,7 @@ import com.youngman.core.model.common.audit.AuditListener;
 import com.youngman.core.model.common.audit.AuditSection;
 import com.youngman.core.model.common.audit.Auditable;
 import com.youngman.core.model.crm.Users;
-import com.youngman.core.model.generic.SalesManagerEntity;
+import com.youngman.core.model.generic.YoungmanEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +21,7 @@ import java.util.List;
 @Getter @Setter @NoArgsConstructor
 @EntityListeners(value = AuditListener.class)
 @Table(name = "CUSTOMER")
-public class Customer extends SalesManagerEntity<Long, Customer> implements Auditable {
+public class Customer extends YoungmanEntity<Long, Customer> implements Auditable {
     private static final long serialVersionUID = 1L;
 
     @Id

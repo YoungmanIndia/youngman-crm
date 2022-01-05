@@ -61,7 +61,7 @@ public class MultipleEntryPointsSecurityConfig {
 
 //    @Bean
 //    public CustomerFacade customerFacade() {
-//        return new com.salesmanager.shop.store.controller.customer.facade.CustomerFacadeImpl();
+//        return new com.Youngman.shop.store.controller.customer.facade.CustomerFacadeImpl();
 //    }
 
 

@@ -12,7 +12,7 @@ import java.util.Locale;
  *
  * @param <E> type de l'entité
  */
-public abstract class SalesManagerEntity<K extends Serializable & Comparable<K>, E extends SalesManagerEntity<K, ?>>
+public abstract class YoungmanEntity<K extends Serializable & Comparable<K>, E extends YoungmanEntity<K, ?>>
 		implements Serializable, Comparable<E> {
 
 	private static final long serialVersionUID = -3988499137919577054L;
@@ -62,7 +62,7 @@ public abstract class SalesManagerEntity<K extends Serializable & Comparable<K>,
 			return false;
 		}
 
-		SalesManagerEntity<K, E> entity = (SalesManagerEntity<K, E>) object; // NOSONAR : traité au-dessus mais wrapper Hibernate 
+		YoungmanEntity<K, E> entity = (YoungmanEntity<K, E>) object; // NOSONAR : traité au-dessus mais wrapper Hibernate
 		K id = getId();
 
 		if (id == null) {

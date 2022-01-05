@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan({"com.youngman.core.business"})
 @EnableAutoConfiguration
+@EnableJpaRepositories(basePackages = "com.youngman.core.business.repositories")
 @EntityScan(basePackages = "com.youngman.core.model")
 @EnableTransactionManagement
 @ImportResource("classpath:/spring/youngman-core-context.xml")
