@@ -1,4 +1,4 @@
-package com.youngman.core.model.customerportal;
+package com.youngman.core.model.common;
 
 import com.youngman.core.model.common.audit.AuditListener;
 import com.youngman.core.model.common.audit.AuditSection;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -27,6 +28,9 @@ public class Role extends YoungmanEntity<Long, Role> implements Auditable {
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @ManyToMany
+    private List<Permission> permissions;
 
     @Embedded
     private AuditSection auditSection = new AuditSection();
