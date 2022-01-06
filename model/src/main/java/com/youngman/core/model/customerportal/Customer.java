@@ -41,11 +41,11 @@ public class Customer extends YoungmanEntity<Long, Customer> implements Auditabl
     private String sapRefNo;
 
     @OneToOne
-    @JoinColumn(name = "pam_id")
+    @JoinColumn(name = "PAM")
     private Users pam;
 
     @OneToOne
-    @JoinColumn(name = "pam_id")
+    @JoinColumn(name = "AR")
     private Users ar;
 
     @Embedded

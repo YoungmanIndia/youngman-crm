@@ -22,8 +22,8 @@ public abstract class AbstractAuthenticatinSuccessHandler extends SavedRequestAw
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractAuthenticatinSuccessHandler.class);
 	
 	
-	@Inject
-	private UserService userService;
+//	@Inject
+//	private UserService userService;
 	
 	    @Override
 	    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
@@ -39,7 +39,8 @@ public abstract class AbstractAuthenticatinSuccessHandler extends SavedRequestAw
 		  session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 		  
 		  try {
-			  Users user = userService.getByUserName(userName);
+//			  Users user = userService.getByUserName(userName);
+			  Users user = new Users();
 			  
 			  Date lastAccess = user.getLoginTime();
 			  if(lastAccess==null) {
@@ -48,7 +49,7 @@ public abstract class AbstractAuthenticatinSuccessHandler extends SavedRequestAw
 			  user.setLastAccess(lastAccess);
 			  user.setLoginTime(new Date());
 			  
-			  userService.saveOrUpdate(user);
+//			  userService.saveOrUpdate(user);
 
 			  redirectAfterSuccess(request,response);
 
