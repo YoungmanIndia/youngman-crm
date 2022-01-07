@@ -15,7 +15,7 @@ public interface UserService extends YoungmanEntityService<Long, Users>{
 
     Users getById(Long id);
 
-    Users getByPasswordResetToken(String storeCode, String token);
+//    Users getByPasswordResetToken(String storeCode, String token);
 
     /**
      * Create or update a User

@@ -19,16 +19,22 @@
 
     <dependencies>
 
-        <!-- sm-core -->
+        <!-- core -->
         <dependency>
             <groupId>com.youngman</groupId>
             <artifactId>core</artifactId>
         </dependency>
 
-        <!-- sm-core-model -->
+        <!-- core-model -->
         <dependency>
             <groupId>com.youngman</groupId>
             <artifactId>model</artifactId>
+        </dependency>
+
+        <!-- crm -->
+        <dependency>
+            <groupId>com.youngman</groupId>
+            <artifactId>crm</artifactId>
         </dependency>
 
         <!-- Spring boot starters -->

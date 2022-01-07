@@ -16,10 +16,10 @@
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 	<!--Encryption -->
-	<beans:bean id="encryption"
-		class="com.youngman.core.business.modules.utils.EncryptionImpl">
-		<beans:property name="secretKey" ref="secretKey" />
-	</beans:bean>
+<!--	<beans:bean id="encryption"-->
+<!--		class="com.youngman.core.business.modules.utils.EncryptionImpl">-->
+<!--		<beans:property name="secretKey" ref="secretKey" />-->
+<!--	</beans:bean>-->
 
 	<!-- Email -->
 	<beans:bean id="freemarkerMailConfiguration"

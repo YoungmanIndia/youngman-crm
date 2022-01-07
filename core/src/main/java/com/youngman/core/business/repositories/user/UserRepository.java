@@ -8,19 +8,15 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<Users, Long> {
 
-    @Query("select distinct u from User as u left join fetch u.groups ug join fetch u.merchantStore um left join fetch u.defaultLanguage ul where u.adminName = ?1")
+    @Query("select distinct u from User as u where u.name = ?1")
     Users findByUserName(String userName);
 
-    @Query("select distinct u from User as u left join fetch u.groups ug join fetch u.merchantStore um left join fetch u.defaultLanguage ul where u.id = ?1")
+    @Query("select distinct u from User as u where u.id = ?1")
     Users findOne(Long id);
 
-    @Query("select distinct u from User as u left join fetch u.groups ug join fetch u.merchantStore um left join fetch u.defaultLanguage ul order by u.id")
+    @Query("select distinct u from User as u order by u.id")
     List<Users> findAll();
 
-    @Query("select distinct u from User as u "
-            + "left join fetch u.groups ug "
-            + "join fetch u.merchantStore um "
-            + "left join fetch u.defaultLanguage ul "
-            + "where u.credentialsResetRequest.credentialsRequest = ?1 and um.code = ?2 ")
-    Users findByResetPasswordToken(String token, String store);
+//    @Query("select distinct u from User as u ")
+//    Users findByResetPasswordToken(String token, String store);
 }

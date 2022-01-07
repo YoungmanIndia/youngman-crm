@@ -50,10 +50,10 @@ public class UserServiceImpl extends YoungmanEntityServiceImpl<Long, Users> impl
         }
     }
 
-    @Override
-    public Users getByPasswordResetToken(String storeCode, String token) {
-        return userRepository.findByResetPasswordToken(token, storeCode);
-    }
+//    @Override
+//    public Users getByPasswordResetToken(String storeCode, String token) {
+//        return userRepository.findByResetPasswordToken(token, storeCode);
+//    }
 
     @Override
     public void saveOrUpdate(Users user) throws ServiceException {
