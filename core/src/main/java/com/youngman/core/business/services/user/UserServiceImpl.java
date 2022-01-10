@@ -11,22 +11,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Service
 public class UserServiceImpl extends YoungmanEntityServiceImpl<Long, Users> implements UserService{
 
     private UserRepository userRepository;
 
-    @Autowired
     private PageableUserRepository pageableUserRepository;
 
     @Inject
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PageableUserRepository pageableUserRepository) {
         super(userRepository);
         this.userRepository = userRepository;
-
+        this.pageableUserRepository = pageableUserRepository;
     }
 
     @Override
