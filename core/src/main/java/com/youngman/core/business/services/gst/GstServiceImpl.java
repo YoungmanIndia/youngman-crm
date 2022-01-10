@@ -1,9 +1,8 @@
-package com.youngman.core.business.services.shippingaddress;
+package com.youngman.core.business.services.gst;
 
 import com.youngman.core.business.repositories.gst.GstRepository;
 import com.youngman.core.business.repositories.gst.PageableGstRepository;
 import com.youngman.core.business.services.common.generic.YoungmanEntityServiceImpl;
-import com.youngman.core.business.services.gst.GstService;
 import com.youngman.core.model.customerportal.Gst;
 import org.springframework.stereotype.Service;
 
