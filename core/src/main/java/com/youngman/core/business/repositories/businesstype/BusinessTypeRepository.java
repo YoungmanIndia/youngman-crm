@@ -10,6 +10,4 @@ import java.util.List;
 @Repository
 public interface BusinessTypeRepository extends JpaRepository<BusinessType, Long> {
 
-    @Query("select distinct b from BusinessType as b where b.businessType like %:businessType% order by b.id")
-    List<BusinessType> findByBusinessType(com.youngman.core.enums.BusinessType businessType);
 }

@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    @Query("select distinct c from Customer as c where c.pan like %:pan% order by c.id")
-    List<Customer> findCustomersByGstNo(String pan);
+    @Query("select distinct c from Customer as c where c.panNo like %:panNo% order by c.id")
+    List<Customer> findCustomersByPanNo(String panNo);
 
     @Query("select distinct c from Customer as c where c.companyName like %:companyName% order by c.id")
     List<Customer> findCustomersByCompanyName(String companyName);

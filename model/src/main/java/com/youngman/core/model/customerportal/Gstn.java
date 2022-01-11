@@ -14,8 +14,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Getter @Setter @NoArgsConstructor
 @EntityListeners(value = AuditListener.class)
-@Table(name = "GST")
-public class Gst extends YoungmanEntity<Long, Gst> implements Auditable {
+@Table(name = "GSTN")
+public class Gstn extends YoungmanEntity<Long, Gstn> implements Auditable {
     private static final Long serialVersionUID = 1L;
 
     @Id

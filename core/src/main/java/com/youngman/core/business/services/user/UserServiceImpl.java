@@ -3,7 +3,8 @@ package com.youngman.core.business.services.user;
 import com.youngman.core.business.exception.ServiceException;
 import com.youngman.core.business.repositories.user.PageableUserRepository;
 import com.youngman.core.business.repositories.user.UserRepository;
-import com.youngman.core.model.crm.Users;
+import com.youngman.core.model.crm.User;
+import org.apache.commons.lang3.Validate;
 import org.infinispan.factories.annotations.Inject;
 import org.springframework.stereotype.Service;
 
@@ -22,22 +23,40 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void delete(Users users) {
-        userRepository.delete(users);
+    public void delete(User user) {
+        userRepository.delete(user);
     }
 
     @Override
-    public List<Users> findAll() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
     @Override
-    public Users getById(Long id) {
+    public User getByUserName(String userName) throws ServiceException {
+        return userRepository.findByUserName(userName);
+    }
+
+
+    @Override
+    public User findByResetPasswordToken(String userName, String token) throws ServiceException {
+        Validate.notNull(userName, "User name cannot be null");
+        Validate.notNull(token, "Token cannot be null");
+        return null;
+    }
+
+    @Override
+    public User getByPasswordResetToken(String token) {
+        return userRepository.findByResetPasswordToken(token);
+    }
+
+    @Override
+    public User getById(Long id) {
         return userRepository.getById(id);
     }
 
     @Override
-    public void saveOrUpdate(Users users) throws ServiceException {
-        userRepository.save(users);
+    public void saveOrUpdate(User user) throws ServiceException {
+        userRepository.save(user);
     }
 }

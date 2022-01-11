@@ -1,19 +1,25 @@
 package com.youngman.core.business.services.user;
 
 import com.youngman.core.business.exception.ServiceException;
-import com.youngman.core.business.services.common.generic.YoungmanEntityService;
-import com.youngman.core.model.crm.Users;
-import com.youngman.core.model.customerportal.BillingAddress;
+import com.youngman.core.model.crm.User;
 
 import java.util.List;
 
 public interface UserService {
 
-    Users getById(Long id);
+    User getById(Long id);
 
-    void saveOrUpdate(Users users) throws ServiceException;
+    void saveOrUpdate(User user) throws ServiceException;
 
-    void delete(Users users);
+    void delete(User user);
 
-    List<Users> findAll();
+    List<User> findAll();
+
+    User getByUserName(String userName) throws ServiceException;
+
+    User getByPasswordResetToken(String token);
+
+    User findByResetPasswordToken (String userName, String token) throws ServiceException;
+
+
 }

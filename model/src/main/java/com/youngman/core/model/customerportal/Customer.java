@@ -5,7 +5,7 @@ import com.youngman.core.enums.Status;
 import com.youngman.core.model.common.audit.AuditListener;
 import com.youngman.core.model.common.audit.AuditSection;
 import com.youngman.core.model.common.audit.Auditable;
-import com.youngman.core.model.crm.Users;
+import com.youngman.core.model.crm.User;
 import com.youngman.core.model.generic.YoungmanEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +14,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class Customer extends YoungmanEntity<Long, Customer> implements Auditabl
 
     @Column(name = "PAN_NO", length = 10)
     @NotEmpty
+    @Pattern(regexp = "[A-Z]{5}[0-9]{4}[A-Z]{1}")
     private String panNo;
 
     @Column(name = "SAP_REF_NO")
@@ -42,11 +44,11 @@ public class Customer extends YoungmanEntity<Long, Customer> implements Auditabl
 
     @OneToOne
     @JoinColumn(name = "PAM")
-    private Users pam;
+    private User pam;
 
     @OneToOne
     @JoinColumn(name = "AR")
-    private Users ar;
+    private User ar;
 
     @Embedded
     private AuditSection auditSection = new AuditSection();
