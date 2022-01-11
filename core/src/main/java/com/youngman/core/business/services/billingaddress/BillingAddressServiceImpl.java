@@ -21,4 +21,16 @@ public class BillingAddressServiceImpl extends YoungmanEntityServiceImpl<Long, B
         this.billingAddressRepository = billingAddressRepository;
         this.pageableBillingAddressRepository = pageableBillingAddressRepository;
     }
+
+    @Override
+    public void delete(BillingAddress billingAddress) throws ServiceException {
+        BillingAddress b = this.getById(billingAddress.getId());
+        super.delete(b);
+
+    }
+
+    @Override
+    public void saveOrUpdate(BillingAddress billingAddress) throws ServiceException {
+        billingAddressRepository.save(billingAddress);
+    }
 }

@@ -31,6 +31,6 @@ public class GstServiceImpl extends YoungmanEntityServiceImpl<Long, Gst> impleme
 
     @Override
     public void saveOrUpdate(Gst gst) throws ServiceException {
-        userRepository.save(gst);
+        gstRepository.save(gst);
     }
 }
