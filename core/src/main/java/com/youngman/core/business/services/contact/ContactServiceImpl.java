@@ -18,4 +18,31 @@ public class ContactServiceImpl extends YoungmanEntityServiceImpl<Long, Contact>
         super(contactRepository);
         this.contactRepository = contactRepository;
     }
+
+    @Override
+    public Contact getByName(String name) throws ServiceException {
+        return contactRepository.findByName(name);
+    }
+
+    @Override
+    public void delete(Contact contact) throws ServiceException {
+        Contact c = this.getById(contact.getId());
+        super.delete(c);
+
+    }
+
+    @Override
+    public List<Contact> listContact() throws ServiceException {
+        try {
+            return contactRepository.findAll();
+        } catch (Exception e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void saveOrUpdate(Contact contact) throws ServiceException {
+        contactRepository.save(contact);
+    }
+
 }
