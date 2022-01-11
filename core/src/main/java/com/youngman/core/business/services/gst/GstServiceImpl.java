@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 
 @Service
-public class GstServiceImpl extends YoungmanEntityServiceImpl<Long, Gst> implements GstService{
+public class GstServiceImpl extends YoungmanEntityServiceImpl<Long, Gst> implements GstService {
 
     private GstRepository gstRepository;
 
@@ -20,5 +20,17 @@ public class GstServiceImpl extends YoungmanEntityServiceImpl<Long, Gst> impleme
         super(gstRepository);
         this.gstRepository = gstRepository;
         this.pageableGstRepository = pageableGstRepository;
+    }
+
+    @Override
+    public void delete(Gst gst) throws ServiceException {
+        Gst g = this.getById(gst.getId());
+        super.delete(g);
+
+    }
+
+    @Override
+    public void saveOrUpdate(Gst gst) throws ServiceException {
+        userRepository.save(gst);
     }
 }

@@ -6,7 +6,6 @@ import com.youngman.core.business.repositories.customer.PageableCustomerReposito
 import com.youngman.core.business.services.common.generic.YoungmanEntityServiceImpl;
 import com.youngman.core.model.customerportal.Customer;
 import org.springframework.stereotype.Service;
-
 import javax.inject.Inject;
 import java.util.List;
 
