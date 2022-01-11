@@ -1,5 +1,6 @@
 package com.youngman.core.business.repositories.customer;
 
+import com.youngman.core.enums.CreditRating;
 import com.youngman.core.model.customerportal.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,20 +11,12 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    @Query("select distinct c from Customer as c left join fetch c.groups cg join fetch c.merchantStore cm left join fetch c.defaultLanguage cl where c.adminName = ?1")
-    Customer findByName(String name);
+    @Query("select distinct c from Customer as c where c.pan like %:pan% order by c.id")
+    List<Customer> findCustomersByGstNo(String pan);
 
-    @Query("select distinct c from Customer as c left join fetch c.groups cg join fetch c.merchantStore cm left join fetch c.defaultLanguage cl where c.id = ?1")
-    Customer findOne(Long id);
+    @Query("select distinct c from Customer as c where c.companyName like %:companyName% order by c.id")
+    List<Customer> findCustomersByCompanyName(String companyName);
 
-    @Query("select distinct c from Customer as c left join fetch c.groups cg join fetch c.merchantStore cm left join fetch c.defaultLanguage cl order by c.id")
-    List<Customer> findAll();
-
-    @Query("select distinct c from Customer as c "
-            + "left join fetch c.groups cg "
-            + "join fetch c.merchantStore cm "
-            + "left join fetch c.defaultLanguage cl "
-            + "where c.credentialsResetRequest.credentialsRequest = ?1 and cm.code = ?2 ")
-    Customer findByResetPasswordToken(String token, String store);
+    List<Customer> findCustomersByCreditRating(CreditRating creditRating);
 
 }

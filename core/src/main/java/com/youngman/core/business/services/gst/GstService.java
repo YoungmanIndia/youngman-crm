@@ -1,11 +1,17 @@
 package com.youngman.core.business.services.gst;
 
+import com.youngman.core.business.exception.ServiceException;
 import com.youngman.core.model.customerportal.Gst;
 
-public interface GstService extends YoungmanEntityService<Long, Gst>{
+import java.util.Optional;
 
-    Gst getById(Long id);
+public interface GstService {
 
-    void saveOrUpdate(Gst gst) throws ServiceException;
+    Optional<Gst> getById(Long id);
 
+    Gst saveOrUpdate(Gst gst) throws ServiceException;
+
+    void delete(Gst gst);
+
+    Iterable<Gst> findAll();
 }

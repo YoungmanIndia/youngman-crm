@@ -1,13 +1,18 @@
 package com.youngman.core.business.services.contactdesignation;
 
 import com.youngman.core.business.exception.ServiceException;
-import com.youngman.core.business.services.common.generic.YoungmanEntityService;
+import com.youngman.core.model.customerportal.BillingAddress;
 import com.youngman.core.model.customerportal.ContactDesignation;
 
-public interface ContactDesignationService extends YoungmanEntityService<Long, ContactDesignation> {
+import java.util.List;
+
+public interface ContactDesignationService {
 
     ContactDesignation getById(Long id);
 
     void saveOrUpdate(ContactDesignation contactDesignation) throws ServiceException;
 
+    void delete(ContactDesignation contactDesignation);
+
+    List<ContactDesignation> findAll();
 }

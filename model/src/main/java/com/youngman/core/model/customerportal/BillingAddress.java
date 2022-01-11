@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
@@ -36,6 +37,7 @@ public class BillingAddress extends YoungmanEntity<Long, BillingAddress> impleme
     private String city;
 
     @Column(name = "PINCODE")
+    @Pattern(regexp="^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$")
     private Integer pincode;
 
     @Column(name = "STATE")

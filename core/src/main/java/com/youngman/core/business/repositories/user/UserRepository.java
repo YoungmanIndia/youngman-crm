@@ -1,6 +1,7 @@
 package com.youngman.core.business.repositories.user;
 
 import com.youngman.core.model.crm.Users;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,19 +11,12 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
 
-    @Query("select distinct u from User as u left join fetch u.groups ug join fetch u.merchantStore um left join fetch u.defaultLanguage ul where u.adminName = ?1")
-    Users findByUserName(String userName);
+    @Query("select distinct u from Users as u where u.name like %:name% order by u.id")
+    List<Users> findByName(String name);
 
-    @Query("select distinct u from User as u left join fetch u.groups ug join fetch u.merchantStore um left join fetch u.defaultLanguage ul where u.id = ?1")
-    Users findOne(Long id);
+    @Query("select distinct u from Users as u where u.email like %:email% order by u.id")
+    List<Users> findByEmail(String email);
 
-    @Query("select distinct u from User as u left join fetch u.groups ug join fetch u.merchantStore um left join fetch u.defaultLanguage ul order by u.id")
-    List<Users> findAll();
-
-    @Query("select distinct u from User as u "
-            + "left join fetch u.groups ug "
-            + "join fetch u.merchantStore um "
-            + "left join fetch u.defaultLanguage ul "
-            + "where u.credentialsResetRequest.credentialsRequest = ?1 and um.code = ?2 ")
-    Users findByResetPasswordToken(String token, String store);
+    @Query("select distinct u from Users as u where u.phone = :phone order by u.id")
+    List<Users> findByPhone(String phone);
 }

@@ -5,9 +5,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ShippingAddressRepository extends JpaRepository<ShippingAddressRepository, Long> {
+import java.util.List;
 
-    @Query("select distinct s from ShippingAddress as s left join fetch s.groups sg join fetch s.merchantStore sm left join fetch s.defaultLanguage sl where s.id = ?1")
-    ShippingAddress findOne(Long id);
+@Repository
+public interface ShippingAddressRepository extends JpaRepository<ShippingAddress, Long> {
+
+    @Query("select distinct s from ShippingAddress as s where s.city like %:city% order by s.id")
+    List<ShippingAddress> findShippingAddressByCity(String city);
+
+    @Query("select distinct s from ShippingAddress as s where s.pincode = :pincode order by s.id")
+    List<ShippingAddress> findShippingAddressByPincode(Integer pincode);
+
+    @Query("select distinct s from ShippingAddress as s where s.state like %:state% order by s.id")
+    List<ShippingAddress> findShippingAddressByState(String state);
 }

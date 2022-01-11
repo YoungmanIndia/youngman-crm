@@ -1,36 +1,37 @@
 package com.youngman.core.business.services.gst;
 
-import com.youngman.core.business.repositories.gst.GstRepository;
+import com.youngman.core.business.exception.ServiceException;
 import com.youngman.core.business.repositories.gst.PageableGstRepository;
-import com.youngman.core.business.services.common.generic.YoungmanEntityServiceImpl;
 import com.youngman.core.model.customerportal.Gst;
+import org.infinispan.factories.annotations.Inject;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
+import java.util.Optional;
+
 
 @Service
-public class GstServiceImpl extends YoungmanEntityServiceImpl<Long, Gst> implements GstService {
-
-    private GstRepository gstRepository;
-
-    private PageableGstRepository pageableGstRepository;
+public class GstServiceImpl implements GstService {
 
     @Inject
-    public GstServiceImpl(GstRepository gstRepository, PageableGstRepository pageableGstRepository) {
-        super(gstRepository);
-        this.gstRepository = gstRepository;
-        this.pageableGstRepository = pageableGstRepository;
+    private PageableGstRepository pageableGstRepository;
+
+    @Override
+    public void delete(Gst gst) {
+        pageableGstRepository.delete(gst);
     }
 
     @Override
-    public void delete(Gst gst) throws ServiceException {
-        Gst g = this.getById(gst.getId());
-        super.delete(g);
-
+    public Iterable<Gst> findAll() {
+        return pageableGstRepository.findAll();
     }
 
     @Override
-    public void saveOrUpdate(Gst gst) throws ServiceException {
-        gstRepository.save(gst);
+    public Optional<Gst> getById(Long id) {
+        return pageableGstRepository.findById(id);
+    }
+
+    @Override
+    public Gst saveOrUpdate(Gst gst) throws ServiceException {
+        return pageableGstRepository.save(gst);
     }
 }

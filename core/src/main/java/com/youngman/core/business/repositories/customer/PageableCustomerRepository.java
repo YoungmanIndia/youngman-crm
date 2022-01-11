@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface PageableCustomerRepository extends PagingAndSortingRepository<Customer, Long> {
 
-    @Query("select distinct c from Customer as c where c.panNo like %:pan% order by c.id")
+    @Query("select distinct c from Customer as c where c.pan like %:pan% order by c.id")
     List<Customer> findCustomersByGstNo(String pan, Pageable pageable);
 
     @Query("select distinct c from Customer as c where c.companyName like %:companyName% order by c.id")

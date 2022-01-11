@@ -37,11 +37,6 @@
 	<beans:bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<!-- in sm-shop -->
-	<beans:bean id="coreConfiguration"
-		class="com.youngman.core.business.utils.CoreConfiguration">
-		<beans:property name="properties" ref="youngman-properties" />
-	</beans:bean>
 
 	<beans:bean id="secretKey" class="java.lang.String">
 		<beans:constructor-arg value="${secretKey}" />

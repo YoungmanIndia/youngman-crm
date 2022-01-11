@@ -7,13 +7,11 @@ import java.util.List;
 
 public interface CustomerService {
 
-    List<Customer> getByName(String name) throws ServiceException;
-
-    List<Customer> listCustomer() throws ServiceException;
-
     Customer getById(Long id);
 
-    Customer getByPasswordResetToken(String storeCode, String token);
-
     void saveOrUpdate(Customer customer) throws ServiceException;
+
+    void delete(Customer customer);
+
+    List<Customer> findAll();
 }

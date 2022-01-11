@@ -3,32 +3,38 @@ package com.youngman.core.business.services.businesstype;
 
 import com.youngman.core.business.exception.ServiceException;
 import com.youngman.core.business.repositories.businesstype.BusinessTypeRepository;
-import com.youngman.core.business.services.common.generic.YoungmanEntityServiceImpl;
 import com.youngman.core.model.customerportal.BusinessType;
+import org.infinispan.factories.annotations.Inject;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
+import java.util.List;
 
 @Service
-public class BusinessTypeServiceImpl extends YoungmanEntityServiceImpl<Long, BusinessType> implements BusinessTypeService {
-
-    private BusinessTypeRepository businessTypeRepository;
+public class BusinessTypeServiceImpl implements BusinessTypeService {
 
     @Inject
-    public BusinessTypeServiceImpl(BusinessTypeRepository businessTypeRepository) {
-        super(businessTypeRepository);
-        this.businessTypeRepository = businessTypeRepository;
+    private BusinessTypeRepository businessTypeRepository;
+
+    public BusinessTypeServiceImpl() {
     }
 
     @Override
-    public void delete(BusinessType businessType) throws ServiceException {
-        BusinessType b = this.getById(businessType.getId());
-        super.delete(b);
-
+    public void delete(BusinessType businessType) {
+        businessTypeRepository.delete(businessType);
     }
 
     @Override
     public void saveOrUpdate(BusinessType businessType) throws ServiceException {
         businessTypeRepository.save(businessType);
+    }
+
+    @Override
+    public List<BusinessType> findAll() {
+        return businessTypeRepository.findAll();
+    }
+
+    @Override
+    public BusinessType getById(Long id) {
+        return businessTypeRepository.getById(id);
     }
 }

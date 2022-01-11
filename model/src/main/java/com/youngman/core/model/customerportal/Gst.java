@@ -19,7 +19,7 @@ public class Gst extends YoungmanEntity<Long, Gst> implements Auditable {
     private static final Long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     @Column(name = "CUSTOMER_ID")

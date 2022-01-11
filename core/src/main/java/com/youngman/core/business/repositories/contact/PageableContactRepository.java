@@ -1,7 +1,5 @@
 package com.youngman.core.business.repositories.contact;
 
-import com.youngman.core.enums.Status;
-import com.youngman.core.model.customerportal.BillingAddress;
 import com.youngman.core.model.customerportal.Contact;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

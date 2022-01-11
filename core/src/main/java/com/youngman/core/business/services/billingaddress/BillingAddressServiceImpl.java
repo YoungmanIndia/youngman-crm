@@ -1,32 +1,39 @@
 package com.youngman.core.business.services.billingaddress;
 
+import com.youngman.core.business.exception.ServiceException;
 import com.youngman.core.business.repositories.billingaddress.BillingAddressRepository;
 import com.youngman.core.business.repositories.billingaddress.PageableBillingAddressRepository;
-import com.youngman.core.business.services.common.generic.YoungmanEntityServiceImpl;
 import com.youngman.core.model.customerportal.BillingAddress;
+import org.infinispan.factories.annotations.Inject;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
+import java.util.List;
 
 @Service
-public class BillingAddressServiceImpl extends YoungmanEntityServiceImpl<Long, BillingAddress> implements BillingAddressService {
-
-    private BillingAddressRepository billingAddressRepository;
-
-    private PageableBillingAddressRepository pageableBillingAddressRepository;
+public class BillingAddressServiceImpl implements BillingAddressService {
 
     @Inject
-    public BillingAddressServiceImpl(BillingAddressRepository billingAddressRepository, PageableBillingAddressRepository pageableBillingAddressRepository) {
-        super(billingAddressRepository);
-        this.billingAddressRepository = billingAddressRepository;
-        this.pageableBillingAddressRepository = pageableBillingAddressRepository;
+    private BillingAddressRepository billingAddressRepository;
+
+    @Inject
+    private PageableBillingAddressRepository pageableBillingAddressRepository;
+
+    public BillingAddressServiceImpl() {
     }
 
     @Override
-    public void delete(BillingAddress billingAddress) throws ServiceException {
-        BillingAddress b = this.getById(billingAddress.getId());
-        super.delete(b);
+    public void delete(BillingAddress billingAddress) {
+        billingAddressRepository.delete(billingAddress);
+    }
 
+    @Override
+    public List<BillingAddress> findAll() {
+        return billingAddressRepository.findAll();
+    }
+
+    @Override
+    public BillingAddress getById(Long id) {
+        return billingAddressRepository.getById(id);
     }
 
     @Override

@@ -1,43 +1,41 @@
 package com.youngman.core.business.services.contact;
 
 
+import com.youngman.core.business.exception.ServiceException;
 import com.youngman.core.business.repositories.contact.ContactRepository;
-import com.youngman.core.business.services.common.generic.YoungmanEntityServiceImpl;
+import com.youngman.core.business.repositories.contact.PageableContactRepository;
 import com.youngman.core.model.customerportal.Contact;
+import org.infinispan.factories.annotations.Inject;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
+import java.util.List;
+
 
 @Service
-public class ContactServiceImpl extends YoungmanEntityServiceImpl<Long, Contact> implements ContactService {
+public class ContactServiceImpl implements ContactService {
 
+    @Inject
     private ContactRepository contactRepository;
 
     @Inject
-    public ContactServiceImpl(ContactRepository contactRepository) {
-        super(contactRepository);
-        this.contactRepository = contactRepository;
+    private PageableContactRepository pageableContactRepository;
+
+    public ContactServiceImpl() {
     }
 
     @Override
-    public Contact getByName(String name) throws ServiceException {
-        return contactRepository.findByName(name);
+    public void delete(Contact contact) {
+        contactRepository.delete(contact);
     }
 
     @Override
-    public void delete(Contact contact) throws ServiceException {
-        Contact c = this.getById(contact.getId());
-        super.delete(c);
-
+    public List<Contact> findAll() {
+        return contactRepository.findAll();
     }
 
     @Override
-    public List<Contact> listContact() throws ServiceException {
-        try {
-            return contactRepository.findAll();
-        } catch (Exception e) {
-            throw new ServiceException(e);
-        }
+    public Contact getById(Long id) {
+        return contactRepository.getById(id);
     }
 
     @Override
