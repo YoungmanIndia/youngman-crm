@@ -26,15 +26,12 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 /**
  * Main entry point for com.youngman.youngman.security - admin - customer - auth - private - services
- *
- * @author dur9213
- *
  */
 @Configuration
 @EnableWebSecurity
 public class MultipleEntryPointsSecurityConfig {
 
-    private static final String API_VERSION = "/api/v*";
+    private static final String API_VERSION = "/api";
 
 //    @Bean
 //    public AuthenticationTokenFilter authenticationTokenFilter() {
@@ -74,161 +71,159 @@ public class MultipleEntryPointsSecurityConfig {
      * @author dur9213
      *
      */
-    @Configuration
-    @Order(1)
-    public static class UserConfigurationAdapter extends WebSecurityConfigurerAdapter {
-
-        @Bean("userAuthenticationManager")
-        @Override
-        public AuthenticationManager authenticationManagerBean() throws Exception {
-            return super.authenticationManagerBean();
-        }
-
-        @Autowired
-        private UserDetailsService customerDetailsService;
-
-        public UserConfigurationAdapter() {
-            super();
-        }
-
-        @Override
-        public void configure(WebSecurity web) {
-            web.ignoring().antMatchers("/");
-            web.ignoring().antMatchers("/crm");
-            web.ignoring().antMatchers("/customer");
-            web.ignoring().antMatchers("/admin");
-            web.ignoring().antMatchers("/error");
-            web.ignoring().antMatchers("/resources/**");
-            web.ignoring().antMatchers("/static/**");
-            web.ignoring().antMatchers("/WEB-INF/**");
-            web.ignoring().antMatchers("/services/public/**");
-        }
-
-
-        @Override
-        public void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(customerDetailsService);
-        }
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                    .antMatcher("/crm/**")
-                    .csrf().disable()
-                    .authorizeRequests()
-                    .antMatchers("/crm/").permitAll()
-                    .antMatchers("/crm/**").permitAll()
-                    .antMatchers("/crm/login*").permitAll()
-                    .antMatchers("/crm/logout*").permitAll()
-                    .antMatchers("/crm/login*").hasRole("AUTH_USER")
-                    .antMatchers("/crm/denied*").hasRole("AUTH_USER")
-                    .antMatchers("/crm/**").hasRole("AUTH_USER")
-                    .anyRequest().authenticated()
-                    .and()
-                    .httpBasic()
-                    //.authenticationEntryPoint(shopAuthenticationEntryPoint())
-                    .and()
-                    .logout()
-                    .logoutUrl("/crm/logout")
-                    .logoutSuccessUrl("/crm/")
-                    .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID")
-
-                    .invalidateHttpSession(false)
-                    .and()
-                    .exceptionHandling().accessDeniedPage("/crm/");
-
-        }
-
-        @Bean
-        public AuthenticationEntryPoint shopAuthenticationEntryPoint() {
-            BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
-            entryPoint.setRealmName("crm-realm");
-            return entryPoint;
-        }
-
-    }
-
-
-    @Configuration
-    @Order(2)
-    public static class CustomerConfigurationAdapter extends WebSecurityConfigurerAdapter {
-
-        @Bean("customerAuthenticationManager")
-        @Override
-        public AuthenticationManager authenticationManagerBean() throws Exception {
-            return super.authenticationManagerBean();
-        }
-
-        @Autowired
-        private UserDetailsService customerDetailsService;
-
-        public CustomerConfigurationAdapter() {
-            super();
-        }
-
-        @Override
-        public void configure(WebSecurity web) {
-            web.ignoring().antMatchers("/");
-            web.ignoring().antMatchers("/crm");
-            web.ignoring().antMatchers("/customer");
-            web.ignoring().antMatchers("/admin");
-            web.ignoring().antMatchers("/error");
-            web.ignoring().antMatchers("/resources/**");
-            web.ignoring().antMatchers("/static/**");
-            web.ignoring().antMatchers("/WEB-INF/**");
-            web.ignoring().antMatchers("/services/public/**");
-        }
+//    @Configuration
+//    @Order(1)
+//    public static class UserConfigurationAdapter extends WebSecurityConfigurerAdapter {
+//
+//        @Bean("userAuthenticationManager")
+//        @Override
+//        public AuthenticationManager authenticationManagerBean() throws Exception {
+//            return super.authenticationManagerBean();
+//        }
+//
+//        @Autowired
+//        private UserDetailsService customerDetailsService;
+//
+//        public UserConfigurationAdapter() {
+//            super();
+//        }
+//
+//        @Override
+//        public void configure(WebSecurity web) {
+//            web.ignoring().antMatchers("/");
+//            web.ignoring().antMatchers("/crm");
+//            web.ignoring().antMatchers("/customer");
+//            web.ignoring().antMatchers("/admin");
+//            web.ignoring().antMatchers("/error");
+//            web.ignoring().antMatchers("/resources/**");
+//            web.ignoring().antMatchers("/static/**");
+//            web.ignoring().antMatchers("/WEB-INF/**");
+//            web.ignoring().antMatchers("/services/public/**");
+//        }
+//
+//
+//        @Override
+//        public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//            auth.userDetailsService(customerDetailsService);
+//        }
+//
+//        @Override
+//        protected void configure(HttpSecurity http) throws Exception {
+//            http
+//                    .antMatcher("/crm/**")
+//                    .csrf().disable()
+//                    .authorizeRequests()
+//                    .antMatchers("/crm/").permitAll()
+//                    .antMatchers("/crm/**").permitAll()
+//                    .antMatchers("/crm/login*").permitAll()
+//                    .antMatchers("/crm/logout*").permitAll()
+//                    .antMatchers("/crm/login*").hasRole("AUTH_USER")
+//                    .antMatchers("/crm/denied*").hasRole("AUTH_USER")
+//                    .antMatchers("/crm/**").hasRole("AUTH_USER")
+//                    .anyRequest().authenticated()
+//                    .and()
+//                    .httpBasic()
+//                    .authenticationEntryPoint(shopAuthenticationEntryPoint())
+//                    .and()
+//                    .logout()
+//                    .logoutUrl("/crm/logout")
+//                    .logoutSuccessUrl("/crm/")
+//                    .invalidateHttpSession(true)
+//                    .deleteCookies("JSESSIONID")
+//
+//                    .invalidateHttpSession(false)
+//                    .and()
+//                    .exceptionHandling().accessDeniedPage("/crm/");
+//
+//        }
+//
+//        @Bean
+//        public AuthenticationEntryPoint shopAuthenticationEntryPoint() {
+//            BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
+//            entryPoint.setRealmName("crm-realm");
+//            return entryPoint;
+//        }
+//
+//    }
 
 
-        @Override
-        public void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(customerDetailsService);
-        }
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                    .antMatcher("/customer/**")
-                    .csrf().disable()
-                    .authorizeRequests()
-                    .antMatchers("/customer/").permitAll()
-                    .antMatchers("/customer/**").permitAll()
-                    .antMatchers("/customer/login*").permitAll()
-                    .antMatchers("/customer/logout*").permitAll()
-                    .antMatchers("/customer/login*").hasRole("AUTH_CUSTOMER")
-                    .antMatchers("/customer/denied*").hasRole("AUTH_CUSTOMER")
-                    .antMatchers("/customer/**").hasRole("AUTH_CUSTOMER")
-                    .anyRequest().authenticated()
-                    .and()
-                    .httpBasic()
-                    .authenticationEntryPoint(shopAuthenticationEntryPointCustom())
-                    .and()
-                    .logout()
-                    .logoutUrl("/customer/logout")
-                    .logoutSuccessUrl("/customer/")
-                    .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID")
-
-                    .invalidateHttpSession(false)
-                    .and()
-                    .exceptionHandling().accessDeniedPage("/customer/");
-
-        }
-
-        @Bean
-        public AuthenticationEntryPoint shopAuthenticationEntryPointCustom() {
-            BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
-            entryPoint.setRealmName("customer-realm");
-            return entryPoint;
-        }
-
-    }
+//    @Configuration
+//    @Order(2)
+//    public static class CustomerConfigurationAdapter extends WebSecurityConfigurerAdapter {
+//
+//        @Bean("customerAuthenticationManager")
+//        @Override
+//        public AuthenticationManager authenticationManagerBean() throws Exception {
+//            return super.authenticationManagerBean();
+//        }
+//
+//        @Autowired
+//        private UserDetailsService customerDetailsService;
+//
+//        public CustomerConfigurationAdapter() {
+//            super();
+//        }
+//
+//        @Override
+//        public void configure(WebSecurity web) {
+//            web.ignoring().antMatchers("/");
+//            web.ignoring().antMatchers("/crm");
+//            web.ignoring().antMatchers("/customer");
+//            web.ignoring().antMatchers("/admin");
+//            web.ignoring().antMatchers("/error");
+//            web.ignoring().antMatchers("/resources/**");
+//            web.ignoring().antMatchers("/static/**");
+//            web.ignoring().antMatchers("/WEB-INF/**");
+//            web.ignoring().antMatchers("/services/public/**");
+//        }
+//
+//
+//        @Override
+//        public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//            auth.userDetailsService(customerDetailsService);
+//        }
+//
+//        @Override
+//        protected void configure(HttpSecurity http) throws Exception {
+//            http
+//                    .antMatcher("/customer/**")
+//                    .csrf().disable()
+//                    .authorizeRequests()
+//                    .antMatchers("/customer/").permitAll()
+//                    .antMatchers("/customer/**").permitAll()
+//                    .antMatchers("/customer/login*").permitAll()
+//                    .antMatchers("/customer/logout*").permitAll()
+//                    .antMatchers("/customer/login*").hasRole("AUTH_CUSTOMER")
+//                    .antMatchers("/customer/denied*").hasRole("AUTH_CUSTOMER")
+//                    .antMatchers("/customer/**").hasRole("AUTH_CUSTOMER")
+//                    .anyRequest().authenticated()
+//                    .and()
+//                    .httpBasic()
+//                    .authenticationEntryPoint(shopAuthenticationEntryPoint())
+//                    .and()
+//                    .logout()
+//                    .logoutUrl("/customer/logout")
+//                    .logoutSuccessUrl("/customer/")
+//                    .invalidateHttpSession(true)
+//                    .deleteCookies("JSESSIONID")
+//
+//                    .invalidateHttpSession(false)
+//                    .and()
+//                    .exceptionHandling().accessDeniedPage("/customer/");
+//
+//        }
+//
+//        @Bean
+//        public AuthenticationEntryPoint shopAuthenticationEntryPoint() {
+//            BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
+//            entryPoint.setRealmName("customer-realm");
+//            return entryPoint;
+//        }
+//
+//    }
 
     /**
      * services api v0
-     *
-     * @author dur9213
      * @deprecated
      *
      */

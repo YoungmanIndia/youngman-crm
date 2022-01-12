@@ -10,6 +10,7 @@
 		<module>main</module>
 		<module>core</module>
         <module>model</module>
+        <module>crm</module>
     </modules>
 	<packaging>pom</packaging>
 
@@ -78,6 +79,12 @@
 			<dependency>
 				<groupId>com.youngman</groupId>
 				<artifactId>model</artifactId>
+				<version>${youngman.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.youngman</groupId>
+				<artifactId>crm</artifactId>
 				<version>${youngman.version}</version>
 			</dependency>
 
