@@ -1,7 +1,6 @@
 package com.youngman.youngman.admin;
 
 import com.youngman.core.business.services.user.UserService;
-import com.youngman.core.model.crm.Users;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Service("userDetailsService")
+//@Service("userDetailsService")
 public class UserServicesImpl implements WebUserServices{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServicesImpl.class);
@@ -36,7 +35,7 @@ public class UserServicesImpl implements WebUserServices{
     public UserDetails loadUserByUsername(String userName)
             throws UsernameNotFoundException, DataAccessException {
 
-        Users user = null;
+        com.youngman.core.model.crm.User user = null;
         Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
         try {
@@ -55,7 +54,7 @@ public class UserServicesImpl implements WebUserServices{
 //            throw new SecurityDataAccessException("Exception while querrying user",e);
         }
 
-        User secUser = new User(userName, DEFAULT_INITIAL_PASSWORD, true, true,
+        org.springframework.security.core.userdetails.User secUser = new User(userName, DEFAULT_INITIAL_PASSWORD, true, true,
                 true, true, authorities);
         return secUser;
     }
@@ -67,10 +66,10 @@ public class UserServicesImpl implements WebUserServices{
         String password = passwordEncoder.encode(DEFAULT_INITIAL_PASSWORD);
 
         //creation of the super admin admin:password)
-        Users user = new Users();
+        com.youngman.core.model.crm.User user = new com.youngman.core.model.crm.User();
         user.setName("Admin");
 
-        userService.create(user);
+        userService.saveOrUpdate(user);
 
 
     }

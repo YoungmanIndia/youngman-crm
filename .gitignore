@@ -37,3 +37,8 @@ build/
 
 /main/src/main/resources/database.properties
 /main/src/main/resources/application.properties
+
+
+main/YOUNGMAN_CRM.h2.db
+main/YOUNGMAN_CRM.lock.db
+main/YOUNGMAN_CRM.trace.db
