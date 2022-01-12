@@ -37,19 +37,20 @@ public class YoungmanApplicationConfiguration implements WebMvcConfigurer {
         logger.info("Current working directory : " + workingDir);
     }
 
-    /** Configure TilesConfigurer. */
+   /* *//** Configure TilesConfigurer. *//*
     @Bean
     public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
         tilesConfigurer.setDefinitions(
-                "/WEB-INF/tiles/tiles-admin.xml",
-                "/WEB-INF/tiles/tiles-crm.xml",
-                "/WEB-INF/tiles/tiles-portal.xml");
+               // "/WEB-INF/tiles/tiles-admin.xml",
+               // "/WEB-INF/tiles/tiles-crm.xml",
+               // "/WEB-INF/tiles/tiles-portal.xml"
+                );
         tilesConfigurer.setCheckRefresh(true);
         return tilesConfigurer;
-    }
+    }*/
 
-    /** Configure ViewResolvers to deliver preferred views. */
+  /*  *//** Configure ViewResolvers to deliver preferred views. *//*
     @Bean
     public TilesViewResolver tilesViewResolver() {
         final TilesViewResolver resolver = new TilesViewResolver();
@@ -57,48 +58,12 @@ public class YoungmanApplicationConfiguration implements WebMvcConfigurer {
         resolver.setOrder(0);
         return resolver;
     }
-
-    //TODO
-//    @Bean
-//    public FilterRegistrationBean<XssFilter> croseSiteFilter(){
-//        FilterRegistrationBean<XssFilter> registrationBean
-//                = new FilterRegistrationBean<>();
-//
-//        registrationBean.setFilter(new XssFilter());
-//        registrationBean.addUrlPatterns("/shop/**");
-//        registrationBean.addUrlPatterns("/api/**");
-//        registrationBean.addUrlPatterns("/customer/**");
-//
-//        return registrationBean;
-//    }
+*/
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(new MappingJackson2HttpMessageConverter());
     }
 
-    //TODO
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        // Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de
-//        registry.addInterceptor(localeChangeInterceptor());
-//
-//        registry
-//                .addInterceptor(storeFilter())
-//                // store web front filter
-//                .addPathPatterns("/shop/**")
-//                // customer section filter
-//                .addPathPatterns("/customer/**");
-//
-//        registry
-//                .addInterceptor(corsFilter())
-//                // public services cors filter
-//                .addPathPatterns("/services/**")
-//                // REST api
-//                .addPathPatterns("/api/**");
-//
-//        // admin panel filter
-//        registry.addInterceptor(adminFilter()).addPathPatterns("/admin/**");
-//    }
 
 }

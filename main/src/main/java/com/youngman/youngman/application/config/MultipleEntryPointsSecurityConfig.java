@@ -126,7 +126,7 @@ public class MultipleEntryPointsSecurityConfig {
                     .anyRequest().authenticated()
                     .and()
                     .httpBasic()
-                    .authenticationEntryPoint(shopAuthenticationEntryPoint())
+                    //.authenticationEntryPoint(shopAuthenticationEntryPoint())
                     .and()
                     .logout()
                     .logoutUrl("/crm/logout")
@@ -202,7 +202,7 @@ public class MultipleEntryPointsSecurityConfig {
                     .anyRequest().authenticated()
                     .and()
                     .httpBasic()
-                    .authenticationEntryPoint(shopAuthenticationEntryPoint())
+                    .authenticationEntryPoint(shopAuthenticationEntryPointCustom())
                     .and()
                     .logout()
                     .logoutUrl("/customer/logout")
@@ -217,7 +217,7 @@ public class MultipleEntryPointsSecurityConfig {
         }
 
         @Bean
-        public AuthenticationEntryPoint shopAuthenticationEntryPoint() {
+        public AuthenticationEntryPoint shopAuthenticationEntryPointCustom() {
             BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
             entryPoint.setRealmName("customer-realm");
             return entryPoint;

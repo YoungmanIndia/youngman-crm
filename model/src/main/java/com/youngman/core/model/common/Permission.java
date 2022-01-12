@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,6 +31,9 @@ public class Permission extends YoungmanEntity<Long, Permission> implements Audi
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @ManyToMany(mappedBy = "permissions")
+    private List<Group> groups = new ArrayList<>();
 
     @Embedded
     private AuditSection auditSection = new AuditSection();
