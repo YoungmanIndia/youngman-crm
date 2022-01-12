@@ -1,15 +1,23 @@
 package com.youngman.core.business.repositories.user;
 
-import com.youngman.core.model.crm.Users;
-import org.springframework.data.domain.Page;
+import com.youngman.core.model.crm.User;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface PageableUserRepository extends PagingAndSortingRepository<Users, Long> {
-    @Query(value = "select distinct u from Users as u left join fetch u.groups ug left join fetch ug.permissions ugp left join fetch u.defaultLanguage ud join fetch u.merchantStore um where (?1 is null or u.adminEmail like %?1%)",
-            countQuery = "select count(distinct u) from User as u join u.groups ug join ug.permissions ugp join u.merchantStore um where (?1 is null or u.adminEmail like %?1%)")
-    Page<Users> listAll(String email, Pageable pageable);
+public interface PageableUserRepository extends PagingAndSortingRepository<User, Long> {
+
+    @Query("select distinct u from User as u where u.name like %:name% order by u.id")
+    List<User> findByName(String name, Pageable pageable);
+
+    @Query("select distinct u from User as u where u.email like %:email% order by u.id")
+    List<User> findByEmail(String email, Pageable pageable);
+
+    @Query("select distinct u from User as u where u.phone = :phone order by u.id")
+    List<User> findByPhone(String phone, Pageable pageable);
+
 }

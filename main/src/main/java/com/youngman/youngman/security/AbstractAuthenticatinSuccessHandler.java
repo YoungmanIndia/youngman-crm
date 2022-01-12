@@ -1,7 +1,6 @@
 package com.youngman.youngman.security;
 
-import com.youngman.core.business.services.user.UserService;
-import com.youngman.core.model.crm.Users;
+import com.youngman.core.model.crm.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -9,7 +8,6 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,14 +18,9 @@ public abstract class AbstractAuthenticatinSuccessHandler extends SavedRequestAw
 	abstract protected void redirectAfterSuccess(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractAuthenticatinSuccessHandler.class);
-	
-	
-//	@Inject
-//	private UserService userService;
-	
+
 	    @Override
 	    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-		  // last access timestamp
 		  String userName = authentication.getName();
 		  
 		  /**
@@ -39,8 +32,7 @@ public abstract class AbstractAuthenticatinSuccessHandler extends SavedRequestAw
 		  session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 		  
 		  try {
-//			  Users user = userService.getByUserName(userName);
-			  Users user = new Users();
+			  User user = new User();
 			  
 			  Date lastAccess = user.getLoginTime();
 			  if(lastAccess==null) {
