@@ -12,8 +12,8 @@
     <artifactId>model</artifactId>
 
 <!--    <scm>-->
-<!--        <connection>scm:git:git://github.com:shopizer-ecommerce/shopizer-sm-core-model.git</connection>-->
-<!--        <developerConnection>scm:git:ssh://github.com:shopizer-ecommerce/shopizer-sm-core-model.git-->
+<!--        <connection>scm:git:git://github.com:shopizer-ecommerce/shopizer-sm-model-model.git</connection>-->
+<!--        <developerConnection>scm:git:ssh://github.com:shopizer-ecommerce/shopizer-sm-model-model.git-->
 <!--        </developerConnection>-->
 <!--        <url>https://github.com/shopizer-ecommerce/shopizer-sm-core-model</url>-->
 <!--    </scm>-->

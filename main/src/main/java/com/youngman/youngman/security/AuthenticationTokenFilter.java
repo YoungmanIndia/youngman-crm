@@ -1,6 +1,6 @@
 package com.youngman.youngman.security;
 
-import com.youngman.core.model.common.UserContext;
+import com.youngman.model.model.common.UserContext;
 import com.youngman.youngman.security.common.CustomAuthenticationManager;
 import com.youngman.youngman.utils.GeoLocationUtils;
 import org.apache.commons.lang3.StringUtils;

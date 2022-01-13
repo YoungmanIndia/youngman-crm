@@ -1,12 +1,10 @@
 package com.youngman.youngman.application.config;
 
-import com.youngman.core.business.configuration.CoreApplicationConfiguration;
+import com.youngman.model.business.configuration.CoreApplicationConfiguration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -14,18 +12,14 @@ import org.springframework.context.event.EventListener;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesView;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 import java.util.List;
 
 @Configuration
 @ComponentScan({"com.youngman.youngman"})
 @ServletComponentScan
-@Import({CoreApplicationConfiguration.class}) // import core configurations
+@Import({CoreApplicationConfiguration.class}) // import model configurations
 @EnableWebSecurity
 public class YoungmanApplicationConfiguration implements WebMvcConfigurer {
 

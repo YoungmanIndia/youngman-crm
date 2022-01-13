@@ -20,7 +20,7 @@
 	 
  	<aop:config>
 		<aop:pointcut id="txPointCutDef"
-			expression="this(com.youngman.core.business.services.common.generic.TransactionalAspectAwareService)" />
+			expression="this(com.youngman.model.business.services.common.generic.TransactionalAspectAwareService)" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCutDef" />
 	</aop:config>
 
@@ -30,7 +30,7 @@
 			<tx:method name="list*" read-only="true" />
 			<tx:method name="search*" read-only="true" />
 			<tx:method name="*" read-only="false"
-				rollback-for="com.youngman.core.business.exception.ServiceException" />
+				rollback-for="com.youngman.model.business.exception.ServiceException" />
 		</tx:attributes>
 	</tx:advice>
 
@@ -50,11 +50,11 @@
 
 	<!-- JDBC User -->
 	<beans:bean id="userService"
-		class="com.youngman.core.business.services.user.UserServiceImpl" />
+		class="com.youngman.model.business.services.user.UserServiceImpl" />
 
 	<!-- After app context init -->
 <!--	<beans:bean id="applicationContextListenerUtils"-->
-<!--		class="com.youngman.core.business.utils.ApplicationContextListenerUtils" />-->
+<!--		class="com.youngman.modell.business.utils.ApplicationContextListenerUtils" />-->
 
 
 	<!-- properties files -->
@@ -67,7 +67,7 @@
 <!--				<beans:list>-->
 <!--					&lt;!&ndash;<beans:value>classpath:database.properties</beans:value>&ndash;&gt;-->
 <!--					<beans:value>classpath:email.properties</beans:value>-->
-<!--					<beans:value>classpath:youngman-core.properties</beans:value>-->
+<!--					<beans:value>classpath:youngman-model.properties</beans:value>-->
 <!--					<beans:value>classpath:authentication.properties</beans:value>-->
 <!--					<beans:value>classpath:vault.properties</beans:value>-->
 <!--				</beans:list>-->
@@ -101,7 +101,7 @@
 <!--				<beans:list>-->
 <!--					<beans:value>classpath:profiles/gcp/database.properties</beans:value>-->
 <!--					<beans:value>classpath:email.properties</beans:value>-->
-<!--					<beans:value>classpath:profiles/gcp/youngman-core.properties-->
+<!--					<beans:value>classpath:profiles/gcp/youngman-model.properties-->
 <!--					</beans:value>-->
 <!--					<beans:value>classpath:authentication.properties</beans:value>-->
 <!--					<beans:value>classpath:vault.properties</beans:value>-->
@@ -119,7 +119,7 @@
 <!--				<beans:list>-->
 <!--					<beans:value>classpath:profiles/cloud/database.properties</beans:value>-->
 <!--					<beans:value>classpath:email.properties</beans:value>-->
-<!--					<beans:value>classpath:profiles/cloud/youngman-core.properties-->
+<!--					<beans:value>classpath:profiles/cloud/youngman-model.properties-->
 <!--					</beans:value>-->
 <!--					<beans:value>classpath:authentication.properties</beans:value>-->
 <!--					<beans:value>classpath:vault.properties</beans:value>-->
@@ -137,7 +137,7 @@
 <!--				<beans:list>-->
 <!--					<beans:value>classpath:profiles/docker/database.properties</beans:value>-->
 <!--					<beans:value>classpath:email.properties</beans:value>-->
-<!--					<beans:value>classpath:profiles/docker/youngman-core.properties-->
+<!--					<beans:value>classpath:profiles/docker/youngman-model.properties-->
 <!--					</beans:value>-->
 <!--					<beans:value>classpath:authentication.properties</beans:value>-->
 <!--					<beans:value>classpath:vault.properties</beans:value>-->
