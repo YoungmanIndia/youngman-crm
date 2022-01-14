@@ -1,10 +1,10 @@
 package com.youngman.youngman.services;
 
-import com.youngman.core.business.constants.Constants;
-import com.youngman.core.business.services.user.UserService;
-import com.youngman.core.enums.GroupType;
-import com.youngman.core.model.common.Group;
-import com.youngman.core.model.common.Permission;
+import com.youngman.model.business.constants.Constants;
+import com.youngman.model.business.services.user.UserService;
+import com.youngman.model.enums.GroupType;
+import com.youngman.model.model.common.Group;
+import com.youngman.model.model.common.Permission;
 import com.youngman.youngman.admin.WebUserServices;
 import com.youngman.youngman.security.SecurityDataAccessException;
 
@@ -59,7 +59,7 @@ public class UserServiceImpl implements WebUserServices {
 	public UserDetails loadUserByUsername(String userName)
 			throws UsernameNotFoundException, DataAccessException {
 
-		com.youngman.core.model.crm.User user = null;
+		com.youngman.model.model.crm.User user = null;
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
 		try {
@@ -110,7 +110,7 @@ public class UserServiceImpl implements WebUserServices {
 		List<Group> groups = groupService.listGroup(GroupType.ADMIN);
 
 		//creation of the super admin admin:password)
-		com.youngman.core.model.crm.User user = new com.youngman.core.model.crm.User("admin@shopizer.com",password,"admin@shopizer.com");
+		com.youngman.model.model.crm.User user = new com.youngman.model.model.crm.User("admin@shopizer.com",password,"admin@shopizer.com");
 		user.setName("Administrator");
 
 		for(Group group : groups) {

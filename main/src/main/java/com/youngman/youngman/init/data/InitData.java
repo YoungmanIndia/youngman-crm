@@ -1,6 +1,6 @@
 package com.youngman.youngman.init.data;
 
-import com.youngman.core.business.exception.ServiceException;
+import com.youngman.model.business.exception.ServiceException;
 
 public interface InitData {
 

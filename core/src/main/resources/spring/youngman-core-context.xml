@@ -28,7 +28,7 @@
     <!-- DB, TX and properties -->
     <beans:import resource="classpath:/spring/youngman-core-config.xml" />
     <!-- content -->
-<!--    <beans:import resource="classpath:/spring/youngman-core-cms.xml" />-->
+<!--    <beans:import resource="classpath:/spring/youngman-model-cms.xml" />-->
     <!-- modules -->
     <beans:import resource="classpath:/spring/youngman-core-modules.xml" />
 

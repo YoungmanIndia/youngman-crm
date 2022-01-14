@@ -1,9 +1,9 @@
 package com.youngman.youngman.services;
 
 
-import com.youngman.core.business.exception.ServiceException;
-import com.youngman.core.enums.GroupType;
-import com.youngman.core.model.common.Group;
+import com.youngman.model.business.exception.ServiceException;
+import com.youngman.model.enums.GroupType;
+import com.youngman.model.model.common.Group;
 
 import java.util.List;
 import java.util.Set;

@@ -1,11 +1,11 @@
 package com.youngman.youngman.services;
 
-import com.youngman.core.business.exception.ServiceException;
-import com.youngman.core.business.repositories.user.PermissionRepository;
-import com.youngman.core.model.common.Group;
-import com.youngman.core.model.common.Permission;
-import com.youngman.core.model.crm.PermissionCriteria;
-import com.youngman.core.model.crm.PermissionList;
+import com.youngman.model.business.exception.ServiceException;
+import com.youngman.model.business.repositories.user.PermissionRepository;
+import com.youngman.model.model.common.Group;
+import com.youngman.model.model.common.Permission;
+import com.youngman.model.model.crm.PermissionCriteria;
+import com.youngman.model.model.crm.PermissionList;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;

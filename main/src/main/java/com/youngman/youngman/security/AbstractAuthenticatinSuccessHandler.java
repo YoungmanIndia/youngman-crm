@@ -1,6 +1,6 @@
 package com.youngman.youngman.security;
 
-import com.youngman.core.model.crm.User;
+import com.youngman.model.model.crm.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;

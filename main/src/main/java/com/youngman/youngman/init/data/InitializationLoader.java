@@ -1,7 +1,7 @@
 package com.youngman.youngman.init.data;
 
-import com.youngman.core.business.services.init.InitializationDatabase;
-import com.youngman.core.business.utils.CoreConfiguration;
+import com.youngman.model.business.services.init.InitializationDatabase;
+import com.youngman.model.business.utils.CoreConfiguration;
 import com.youngman.youngman.admin.WebUserServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
