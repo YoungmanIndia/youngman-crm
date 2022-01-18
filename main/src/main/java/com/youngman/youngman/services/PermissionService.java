@@ -1,11 +1,10 @@
 package com.youngman.youngman.services;
 
-import com.youngman.core.business.exception.ServiceException;
-import com.youngman.core.model.common.Group;
-import com.youngman.core.model.common.Permission;
-import com.youngman.core.model.crm.PermissionCriteria;
-import com.youngman.core.model.crm.PermissionList;
-import com.youngman.core.model.generic.YoungmanEntity;
+import com.youngman.model.business.exception.ServiceException;
+import com.youngman.model.model.common.Group;
+import com.youngman.model.model.common.Permission;
+import com.youngman.model.model.crm.PermissionCriteria;
+import com.youngman.model.model.crm.PermissionList;
 
 import java.util.List;
 

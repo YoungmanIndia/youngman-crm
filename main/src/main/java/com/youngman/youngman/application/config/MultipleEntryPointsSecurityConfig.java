@@ -71,8 +71,8 @@ public class MultipleEntryPointsSecurityConfig {
      * @author dur9213
      *
      */
-//    @Configuration
-//    @Order(1)
+   // @Configuration
+    // @Order(1)
 //    public static class UserConfigurationAdapter extends WebSecurityConfigurerAdapter {
 //
 //        @Bean("userAuthenticationManager")

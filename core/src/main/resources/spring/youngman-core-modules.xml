@@ -17,7 +17,7 @@
 
 	<!--Encryption -->
 <!--	<beans:bean id="encryption"-->
-<!--		class="com.youngman.core.business.modules.utils.EncryptionImpl">-->
+<!--		class="com.youngman.modell.business.modules.utils.EncryptionImpl">-->
 <!--		<beans:property name="secretKey" ref="secretKey" />-->
 <!--	</beans:bean>-->
 

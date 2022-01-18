@@ -19,13 +19,13 @@
 
     <dependencies>
 
-        <!-- core -->
+        <!-- model -->
         <dependency>
             <groupId>com.youngman</groupId>
             <artifactId>core</artifactId>
         </dependency>
 
-        <!-- core-model -->
+        <!-- model-model -->
         <dependency>
             <groupId>com.youngman</groupId>
             <artifactId>model</artifactId>

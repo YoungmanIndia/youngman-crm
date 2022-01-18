@@ -1,6 +1,6 @@
 package com.youngman.youngman.admin;
 
-import com.youngman.core.business.services.user.UserService;
+import com.youngman.model.business.services.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -10,13 +10,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 //@Service("userDetailsService")
 public class UserServicesImpl implements WebUserServices{
@@ -35,7 +33,7 @@ public class UserServicesImpl implements WebUserServices{
     public UserDetails loadUserByUsername(String userName)
             throws UsernameNotFoundException, DataAccessException {
 
-        com.youngman.core.model.crm.User user = null;
+        com.youngman.model.model.crm.User user = null;
         Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
         try {
@@ -66,7 +64,7 @@ public class UserServicesImpl implements WebUserServices{
         String password = passwordEncoder.encode(DEFAULT_INITIAL_PASSWORD);
 
         //creation of the super admin admin:password)
-        com.youngman.core.model.crm.User user = new com.youngman.core.model.crm.User();
+        com.youngman.model.model.crm.User user = new com.youngman.model.model.crm.User();
         user.setName("Admin");
 
         userService.saveOrUpdate(user);
