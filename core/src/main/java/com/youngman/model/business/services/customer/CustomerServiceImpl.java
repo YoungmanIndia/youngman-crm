@@ -5,6 +5,7 @@ import com.youngman.model.business.repositories.customer.CustomerRepository;
 import com.youngman.model.business.repositories.customer.PageableCustomerRepository;
 import com.youngman.model.model.customerportal.Customer;
 import org.infinispan.factories.annotations.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -12,10 +13,10 @@ import java.util.Optional;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    @Inject
+    @Autowired
     private CustomerRepository customerRepository;
 
-    @Inject
+    @Autowired
     private PageableCustomerRepository pageableCustomerRepository;
 
     public CustomerServiceImpl() {

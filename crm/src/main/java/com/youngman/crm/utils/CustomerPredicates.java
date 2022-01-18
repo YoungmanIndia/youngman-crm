@@ -1,6 +1,7 @@
 package com.youngman.crm.utils;
 
-import com.youngman.core.model.customerportal.Customer;
+
+import com.youngman.model.model.customerportal.Customer;
 
 import java.util.function.BiPredicate;
 

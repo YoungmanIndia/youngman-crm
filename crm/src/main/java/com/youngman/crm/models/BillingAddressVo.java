@@ -1,19 +1,34 @@
 package com.youngman.crm.models;
 
-import com.youngman.core.model.customerportal.BillingAddress;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.youngman.model.model.customerportal.BillingAddress;
 
 public class BillingAddressVo {
     private Long id;
+
+    @JsonProperty("customerId")
     private Long customerId;
+
+    @JsonProperty("gst")
     private String gst;
+
+    @JsonProperty("address")
     private String address;
+
+    @JsonProperty("city")
     private String city;
+
+    @JsonProperty("pincode")
     private Integer pincode;
+
+    @JsonProperty("state")
     private String state;
+
+    @JsonProperty("status")
     private String status;
+
+    public BillingAddressVo() {
+    }
 
     public BillingAddressVo(BillingAddress billingAddress) {
         this.customerId = billingAddress.getCustomer().getId();

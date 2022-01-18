@@ -1,20 +1,21 @@
 package com.youngman.crm.controllers;
 
-import com.youngman.core.business.exception.ServiceException;
-import com.youngman.core.business.services.billingaddress.BillingAddressService;
-import com.youngman.core.business.services.customer.CustomerService;
-import com.youngman.core.business.services.gst.GstnService;
-import com.youngman.core.enums.Status;
-import com.youngman.core.model.customerportal.BillingAddress;
-import com.youngman.core.model.customerportal.Customer;
-import com.youngman.core.model.customerportal.Gstn;
+
 import com.youngman.crm.models.BillingAddressVo;
 import com.youngman.crm.utils.CustomerPredicates;
 import com.youngman.crm.utils.Utils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.youngman.model.business.exception.ServiceException;
+import com.youngman.model.business.services.billingaddress.BillingAddressService;
+import com.youngman.model.business.services.customer.CustomerService;
+import com.youngman.model.business.services.gst.GstnService;
+import com.youngman.model.enums.Status;
+import com.youngman.model.model.customerportal.BillingAddress;
+import com.youngman.model.model.customerportal.Customer;
+import com.youngman.model.model.customerportal.Gstn;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -36,31 +37,40 @@ public class CustomerController {
     @Inject
     private BillingAddressService billingAddressService;
 
-    @PostMapping(value = "/addBranch")
-    public String addGstBranch(@NotNull @RequestParam("gst") String gst,@NotNull @RequestParam("customerId") Long customerId, @RequestParam("billingAddress") BillingAddressVo billingAddressVo) throws ServiceException {
+    private static Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
-        Customer customer = customerService.getById(customerId);
+    @PostMapping(value = "/addBranch/{gst}/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+    public String addGstBranch(@NotNull @PathVariable("gst") String gst,@NotNull @PathVariable("customerId") Long customerId, @RequestBody BillingAddressVo billingAddressVo) {
 
-        if(CustomerPredicates.doesGstBelongToCustomer.test(gst, customer)) {
-            Gstn gstn = new Gstn.GstnBuilder().setCustomer(customer).setGstn(gst).build();
-            Gstn savedGstn = gstnService.saveOrUpdate(gstn);
+        try {
+            Customer customer = customerService.getById(customerId);
 
-            BillingAddress billingAddress = new BillingAddress.BillingAddressBuilder()
-                    .setCustomer(customer)
-                    .setGst(savedGstn)
-                    .setAddress(billingAddressVo.getAddress())
-                    .setCity(billingAddressVo.getCity())
-                    .setPincode(billingAddressVo.getPincode())
-                    .setState(billingAddressVo.getState())
-                    .setStatus(Status.ACTIVE.getStatus())
-                    .build();
+            if (CustomerPredicates.doesGstBelongToCustomer.test(gst, customer)) {
+                Gstn gstn = new Gstn.GstnBuilder().setCustomer(customer).setGstn(gst).build();
+                Gstn savedGstn = gstnService.saveOrUpdate(gstn);
 
-            savedGstn.getBillingAddresses().add(billingAddress);
+                BillingAddress billingAddress = new BillingAddress.BillingAddressBuilder()
+                        .setCustomer(customer)
+                        .setGst(savedGstn)
+                        .setAddress(billingAddressVo.getAddress())
+                        .setCity(billingAddressVo.getCity())
+                        .setPincode(billingAddressVo.getPincode())
+                        .setState(billingAddressVo.getState())
+                        .setStatus(Status.ACTIVE.getStatus())
+                        .build();
 
-            billingAddressService.saveOrUpdate(billingAddress);
+                savedGstn.getBillingAddresses().add(billingAddress);
 
-        } else {
-            throw new ServiceException("Gst " + gst + " does not belong to customer " + customer);
+                billingAddressService.saveOrUpdate(billingAddress);
+
+            } else {
+                throw new ServiceException("Gst " + gst + " does not belong to customer " + customer);
+            }
+
+        } catch (ServiceException e) {
+            logger.error("Exception in Class CustomerController", e);
+            return e.getMessageCode();
         }
 
         return "Branch added successfully";
