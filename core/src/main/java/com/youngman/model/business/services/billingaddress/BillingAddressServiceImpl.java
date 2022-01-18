@@ -40,4 +40,9 @@ public class BillingAddressServiceImpl implements BillingAddressService {
     public void saveOrUpdate(BillingAddress billingAddress) throws ServiceException {
         billingAddressRepository.save(billingAddress);
     }
+
+    @Override
+    public List<BillingAddress> findByGst(String gst) {
+        return billingAddressRepository.findByGst(gst);
+    }
 }
