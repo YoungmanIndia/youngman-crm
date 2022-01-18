@@ -7,6 +7,7 @@ import com.youngman.core.model.customerportal.Customer;
 import org.infinispan.factories.annotations.Inject;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -31,8 +32,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getById(Long id) {
-        return customerRepository.getById(id);
+    public Customer getById(Long id) throws ServiceException {
+        Optional<Customer> customer =  pageableCustomerRepository.findById(id);
+        if(customer.isEmpty())
+            throw new ServiceException("Customer with Id: " + id + " is not present");
+
+        return customer.get();
     }
 
     @Override

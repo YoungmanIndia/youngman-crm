@@ -4,6 +4,7 @@ import com.youngman.core.business.exception.ServiceException;
 import com.youngman.core.business.repositories.billingaddress.BillingAddressRepository;
 import com.youngman.core.business.repositories.billingaddress.PageableBillingAddressRepository;
 import com.youngman.core.model.customerportal.BillingAddress;
+import com.youngman.core.model.customerportal.Gstn;
 import org.infinispan.factories.annotations.Inject;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +40,10 @@ public class BillingAddressServiceImpl implements BillingAddressService {
     @Override
     public void saveOrUpdate(BillingAddress billingAddress) throws ServiceException {
         billingAddressRepository.save(billingAddress);
+    }
+
+    @Override
+    public List<BillingAddress> findByGst(String gst) {
+        return billingAddressRepository.findByGst(gst);
     }
 }

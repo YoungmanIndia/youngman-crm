@@ -4,6 +4,7 @@ import com.youngman.core.model.common.audit.AuditListener;
 import com.youngman.core.model.common.audit.AuditSection;
 import com.youngman.core.model.common.audit.Auditable;
 import com.youngman.core.model.generic.YoungmanEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,12 +24,13 @@ public class BillingAddress extends YoungmanEntity<Long, BillingAddress> impleme
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "CUSTOMER_ID", nullable = false)
-    private Long customerId;
+    @OneToOne
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer;
 
-    @Column(name = "GST")
-    @NotEmpty
-    private String gst;
+    @OneToOne
+    @JoinColumn(name="GST_ID")
+    private Gstn gst;
 
     @Column(name = "ADDRESS")
     private String address;
@@ -48,4 +50,71 @@ public class BillingAddress extends YoungmanEntity<Long, BillingAddress> impleme
 
     @Embedded
     private AuditSection auditSection = new AuditSection();
+
+    private BillingAddress(BillingAddressBuilder builder) {
+        this.id = builder.id;
+        this.customer = builder.customer;
+        this.gst = builder.gst;
+        this.address = builder.address;
+        this.city = builder.city;
+        this.pincode = builder.pincode;
+        this.state = builder.state;
+        this.status = builder.status;
+    }
+
+
+    public static class BillingAddressBuilder {
+        private Long id;
+        private Customer customer;
+        private Gstn gst;
+        private String address;
+        private String city;
+        private Integer pincode;
+        private String state;
+        private String status;
+
+        public BillingAddressBuilder setId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public BillingAddressBuilder setCustomer(Customer customer) {
+            this.customer = customer;
+            return this;
+        }
+
+        public BillingAddressBuilder setGst(Gstn gst) {
+            this.gst = gst;
+            return this;
+        }
+
+        public BillingAddressBuilder setAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public BillingAddressBuilder setCity(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public BillingAddressBuilder setPincode(Integer pincode) {
+            this.pincode = pincode;
+            return this;
+        }
+
+        public BillingAddressBuilder setState(String state) {
+            this.state = state;
+            return this;
+        }
+
+        public BillingAddressBuilder setStatus(String status) {
+            this.status = status;
+            return this;
+        }
+
+        public BillingAddress build() {
+            return  new BillingAddress(this);
+        }
+    }
 }

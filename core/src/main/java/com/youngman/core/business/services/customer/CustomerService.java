@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CustomerService {
 
-    Customer getById(Long id);
+    Customer getById(Long id) throws ServiceException;
 
     void saveOrUpdate(Customer customer) throws ServiceException;
 

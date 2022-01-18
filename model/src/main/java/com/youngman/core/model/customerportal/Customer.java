@@ -69,6 +69,9 @@ public class Customer extends YoungmanEntity<Long, Customer> implements Auditabl
     @Column(name = "STATUS")
     private Status status = Status.ACTIVE;
 
+    @OneToMany
+    private List<Gstn> gstn;
+
     @Column(name = "OUTSTANDING")
     private BigDecimal outstanding = BigDecimal.ZERO;
 

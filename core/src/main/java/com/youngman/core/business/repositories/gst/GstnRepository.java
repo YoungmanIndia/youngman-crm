@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface GstnRepository extends JpaRepository<Gstn, Long> {
 
-    @Query("select distinct g from Gstn as g where g.gstn like %:gst% order by g.id")
-    List<Gstn> findByGst(String gst);
+    @Query("select distinct g from Gstn as g where g.gstn = :gst")
+    Gstn findByGst(String gst);
 
-    @Query("select distinct g from Gstn as g where g.customerId = :customerId order by g.id")
+    @Query("select distinct g from Gstn as g where g.customer = :customerId order by g.id")
     List<Gstn> findByCustomerId(Long customerId);
 }

@@ -15,4 +15,6 @@ public interface BillingAddressService {
 
     List<BillingAddress> findAll();
 
+    List<BillingAddress> findByGst(String gst);
+
 }
