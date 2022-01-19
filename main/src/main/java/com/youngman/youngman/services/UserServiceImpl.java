@@ -31,7 +31,7 @@ import java.util.List;
  *         http://stackoverflow.com/questions/5105776/spring-security-with
  *         -custom-user-details
  */
-@Service("userDetailsService")
+//@Service("userDetailsService")
 public class UserServiceImpl implements WebUserServices {
 
 

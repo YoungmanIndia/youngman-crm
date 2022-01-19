@@ -10,13 +10,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Collection;
 
-//@Service("userDetailsService")
+@Service("userDetailsService")
 public class UserServicesImpl implements WebUserServices{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServicesImpl.class);

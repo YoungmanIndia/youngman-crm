@@ -30,9 +30,9 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
 
     private final static String FACEBOOK_TOKEN ="FB ";
 
-    //private final static String privateApiPatternString = "/api/v*/private";
+//    private final static String privateApiPatternString = "/api/v*/private";
 
-    //private final static Pattern pattern = Pattern.compile(privateApiPatternString);
+//    private final static Pattern pattern = Pattern.compile(privateApiPatternString);
 
 
     @Inject
@@ -69,7 +69,7 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
         String requestUrl = request.getRequestURL().toString();
 
 
-        if(requestUrl.contains("/api/v1/auth")) {
+        if(requestUrl.contains("/api/auth")) {
             //setHeader(request,response);
             final String requestHeader = request.getHeader(this.tokenHeader);//token
 
@@ -91,7 +91,7 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
         }
 
 
-        if(requestUrl.contains("/api/v1/private") || requestUrl.contains("/api/v2/private")) {
+        if(requestUrl.contains("/api/private")) {
 
             //setHeader(request,response);
 

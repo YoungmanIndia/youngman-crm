@@ -37,6 +37,11 @@
             <artifactId>crm</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.youngman</groupId>
+            <artifactId>portal</artifactId>
+        </dependency>
+
         <!-- Spring boot starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
