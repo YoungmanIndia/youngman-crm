@@ -1,4 +1,4 @@
-package com.youngman.crm.controllers;
+package com.youngman.crm.controllers.tickets;
 
 import com.youngman.model.business.services.ticket.TicketService;
 import com.youngman.model.model.crm.Ticket;

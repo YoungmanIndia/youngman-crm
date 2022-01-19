@@ -11,6 +11,7 @@
 		<module>core</module>
         <module>model</module>
         <module>crm</module>
+        <module>portal</module>
     </modules>
 	<packaging>pom</packaging>
 
@@ -85,6 +86,12 @@
 			<dependency>
 				<groupId>com.youngman</groupId>
 				<artifactId>crm</artifactId>
+				<version>${youngman.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.youngman</groupId>
+				<artifactId>portal</artifactId>
 				<version>${youngman.version}</version>
 			</dependency>
 

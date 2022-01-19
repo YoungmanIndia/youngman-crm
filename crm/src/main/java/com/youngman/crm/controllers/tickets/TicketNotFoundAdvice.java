@@ -1,4 +1,4 @@
-package com.youngman.crm.controllers;
+package com.youngman.crm.controllers.tickets;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
